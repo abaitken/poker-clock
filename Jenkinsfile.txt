@@ -22,12 +22,12 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     sourceFiles: '**/*.zip',
-                                    excludes: '**/nbproject/**',
+                                    excludes: '**/nbproject/**,Jenkinsfile.txt',
                                     remoteDirectory: '/abaitken/stuff/PokerClockJs',
                                     removePrefix: '',
                                     remoteDirectorySDF: '',
                                     flatten: false,
-                                    cleanRemote: false,
+                                    cleanRemote: true,
                                     noDefaultExcludes: false,
                                     makeEmptyDirs: false,
                                     patternSeparator: '[, ]+'
