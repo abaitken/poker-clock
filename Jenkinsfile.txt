@@ -24,8 +24,8 @@ pipeline {
                                     sourceFiles: '**/*.zip',
                                     excludes: '**/nbproject/**',
                                     remoteDirectory: '/abaitken/stuff/PokerClockJs',
-                                    removePrefix: ''
-                                    remoteDirectorySDF: ''
+                                    removePrefix: '',
+                                    remoteDirectorySDF: '',
                                     flatten: false,
                                     cleanRemote: false,
                                     noDefaultExcludes: false,
