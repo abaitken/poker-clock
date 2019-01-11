@@ -15,14 +15,30 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                script {
+                  sshPublisher(publishers: [sshPublisherDesc(configName: 'pkgsrv', transfers: [sshTransfer(sourceFiles: '*.rpm')])])
+                }
+
                 sshPublisher {
-                    server('Personal')
-                    sshTransfer {
-                        sourceFiles("**/*.zip")
-                        remoteDirectory("/abaitken/stuff/PokerClockJs")
-                        cleanRemote(false)
-                        excludes("**/nbproject/**")
-                    }
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'Personal',
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: '**/*.zip',
+                                    excludes: '**/nbproject/**',
+                                    remoteDirectory: '/abaitken/stuff/PokerClockJs',
+                                    removePrefix: ''
+                                    remoteDirectorySDF: ''
+                                    flatten: false,
+                                    cleanRemote: false,
+                                    noDefaultExcludes: false,
+                                    makeEmptyDirs: false,
+                                    patternSeparator: '[, ]+'
+                                )
+                            ]
+                        )
+                    ]                    
                 }
             }
         }
