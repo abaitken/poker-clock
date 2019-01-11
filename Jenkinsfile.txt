@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sshPublisher {
+                sshPublisher (
                     publishers: [
                         sshPublisherDesc(
                             configName: 'Personal',
@@ -35,7 +35,7 @@ pipeline {
                             ]
                         )
                     ]                    
-                }
+                )
             }
         }
     }
