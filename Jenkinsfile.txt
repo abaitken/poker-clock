@@ -21,7 +21,7 @@ pipeline {
                             configName: 'Personal',
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: '**/*.zip',
+                                    sourceFiles: '**/*',
                                     excludes: '**/nbproject/**,Jenkinsfile.txt',
                                     remoteDirectory: '/abaitken/stuff/PokerClockJs',
                                     removePrefix: '',
