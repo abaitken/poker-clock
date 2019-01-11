@@ -17,11 +17,19 @@ pipeline {
                 echo 'Deploying....'
                 sshPublisher {
                     server('Personal')
-                    sshTransfer {
-                        sourceFiles("**/*.zip")
-                        remoteDirectory("/abaitken/stuff/PokerClockJs")
-                        cleanRemote(false)
-                        excludes("**/nbproject/**")
+                    {
+                        sshTransfer {
+                            sourceFiles("**/*.zip")
+                            excludes("**/nbproject/**")
+                            remoteDirectory("/abaitken/stuff/PokerClockJs")
+                            removePrefix()
+                            remoteDirectorySDF()
+                            flatten(false)
+                            cleanRemote(false)
+                            noDefaultExcludes(false)
+                            makeEmptyDirs(false)
+                            patternSeparator("[, ]+")
+                        }
                     }
                 }
             }
