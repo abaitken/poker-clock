@@ -1,0 +1,158 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Poker Clock</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+    </head>
+    <body>
+        <div class="row">
+
+            <div class="column left">
+
+                <div class="chipValues" data-bind="foreach: chips">  
+                    <svg viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" class="chip">
+                        <symbol id="dice1" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="8" cy="8" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <symbol id="dice2" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="4" cy="4" stroke-width="0" />
+                                <circle r="2" cx="12" cy="12" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <symbol id="dice3" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="4" cy="4" stroke-width="0" />
+                                <circle r="2" cx="8" cy="8" stroke-width="0" />
+                                <circle r="2" cx="12" cy="12" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <symbol id="dice4" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="4" cy="4" stroke-width="0" />
+                                <circle r="2" cx="4" cy="12" stroke-width="0" />
+                                <circle r="2" cx="12" cy="4" stroke-width="0" />
+                                <circle r="2" cx="12" cy="12" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <symbol id="dice5" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="4" cy="4" stroke-width="0" />
+                                <circle r="2" cx="4" cy="12" stroke-width="0" />
+                                <circle r="2" cx="8" cy="8" stroke-width="0" />
+                                <circle r="2" cx="12" cy="4" stroke-width="0" />
+                                <circle r="2" cx="12" cy="12" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <symbol id="dice6" viewBox="0 0 16 16">
+                            <rect width="16" x="0" y="0" height="16" stroke-width="2" style="fill-opacity: 0;"/>
+                            <g>
+                                <circle r="2" cx="4" cy="4" stroke-width="0" />
+                                <circle r="2" cx="4" cy="8" stroke-width="0" />
+                                <circle r="2" cx="4" cy="12" stroke-width="0" />
+                                <circle r="2" cx="12" cy="4" stroke-width="0" />
+                                <circle r="2" cx="12" cy="8" stroke-width="0" />
+                                <circle r="2" cx="12" cy="12" stroke-width="0" />
+                            </g>
+                        </symbol>
+
+                        <g id="svgChip">
+                            <circle r="80" id="mainCircle" stroke-width="1" data-bind="attr: { fill: mainColor, stroke: secondColor }" />
+                            <circle r="57" id="innerCircle" stroke-width="5" data-bind="attr: { fill: mainColor, stroke: secondColor }" />
+
+                            <g id="outerSquares" data-bind="attr: { fill: secondColor }">
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(0)" />
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(60)" />
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(120)" />
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(180)" />                    
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(240)" />
+                                <rect width="20" height="15" y="-80" x="-10" transform="rotate(300)" />
+                            </g>
+
+                            <g id="outerDice" data-bind="attr: { fill: secondColor, stroke: secondColor }">
+                                <use xlink:href="#dice1" x="-10"  y="-80" width="16" height="16" transform="rotate(30)"/>
+                                <use xlink:href="#dice2" x="-10"  y="-80" width="16" height="16" transform="rotate(90)"/>
+                                <use xlink:href="#dice3" x="-10"  y="-80" width="16" height="16" transform="rotate(150)"/>
+                                <use xlink:href="#dice4" x="-10"  y="-80" width="16" height="16" transform="rotate(210)"/>
+                                <use xlink:href="#dice5" x="-10"  y="-80" width="16" height="16" transform="rotate(270)"/>
+                                <use xlink:href="#dice6" x="-10"  y="-80" width="16" height="16" transform="rotate(330)"/>
+                            </g>
+                        </g>
+                        <text data-bind="text: value, attr: { fill: textColor }"></text>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="column middle">
+                <div id="buyinTimeContainer" class="buyinTimeContainer">
+                    <svg viewBox="-100 -100 200 200" class="buyin">
+                        <circle id="buyinProgress" r="80" transform="rotate(-90)"/>
+                        <text data-bind="text: buyinTimeRemainingText"/>
+                    </svg>                    
+                </div>
+
+                <div class="countDownContainer">
+                    <svg viewBox="-100 -100 200 200" class="countdown">
+                        <circle id="progress" r="80" transform="rotate(-90)"/>
+                        <text data-bind="text: timeRemainingText"/>
+                    </svg>
+                    <br/>
+                    <span class="currentBlind" data-bind="text: currentBlindText"></span>
+                </div>
+
+                <div class="buttonPanel">
+                    <button data-bind="click: OnLastBlind">
+                        <img src="media/fast-backward-solid.svg" width="24" height="24" alt="Prev Blind" />
+                    </button>
+
+                    <button data-bind="click: OnAddMinute">
+                        <img src="media/backward-solid.svg" width="24" height="24" alt="Add Min" />
+                    </button>
+
+                    <button data-bind="click: OnPlayPauseClick" id="play-icon">
+                        <img src="media/play-solid.svg" width="24" height="24" alt="Play" />
+                    </button>
+                    <button data-bind="click: OnPlayPauseClick" id="pause-icon">
+                        <img src="media/pause-solid.svg" width="24" height="24" alt="Pause" />
+                    </button>
+
+                    <button data-bind="click: OnSubMinute">
+                        <img src="media/forward-solid.svg" width="24" height="24" alt="Sub Min" />
+                    </button>
+
+                    <button data-bind="click: OnNextBlind">
+                        <img src="media/fast-forward-solid.svg" width="24" height="24" alt="Next Blind" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="column right">
+                <div class="blindsContainer">
+                    <ul data-bind="foreach: blinds">
+                        <li data-bind="text: text, attr: { id: id }"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <audio data-bind="attr: { src: notifySound }" id="notifySound"></audio>
+        <audio data-bind="attr: { src: buyinWarning }" id="buyinWarning"></audio>
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="js/knockout-3.4.2.js" type="text/javascript"></script>
+        <script src="js/NoSleep.js" type="text/javascript"></script>
+        <script src="js/viewmodel.js" type="text/javascript"></script>
+    </body>
+</html>
