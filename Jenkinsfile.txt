@@ -15,10 +15,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                script {
-                  sshPublisher(publishers: [sshPublisherDesc(configName: 'pkgsrv', transfers: [sshTransfer(sourceFiles: '*.rpm')])])
-                }
-
                 sshPublisher {
                     publishers: [
                         sshPublisherDesc(
