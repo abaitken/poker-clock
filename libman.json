@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "knockout@3.5.1",
+      "destination": "src\\lib\\knockout"
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "src\\lib\\jquery"
+    },
+    {
+      "library": "nosleep@0.12.0",
+      "destination": "src\\lib\\nosleep"
+    }
+  ]
+}
